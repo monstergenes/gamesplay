@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<style>
+    html {
+        /* csslint ignore:start */
+        /* The nav header is 3.5rem high, plus 20px for the margin-top of the
+       main container. */
+        scroll-padding-top: calc(3.5rem + 20px);
+        /* csslint ignore:end */
+    }
+
+    /* Replacement for `body { background-attachment: fixed; }`, which has
+   performance issues when scrolling on large displays. See #1394. */
+    body::before {
+        margin-block-start: auto;
+        padding-inline-start: 0%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column-reverse;
+        position: inherit;
+        inline-size: 100%;
+        block-size: 100%;
+
+        background-color: #f8f8f8;
+        background: url(...img/Untitled.png);
+        will-change: transform;
+        z-index: -1;
+    }
+
+    .video-background {
+        margin-block-start: 0%;
+        min-block-size: 400px;
+        padding-inline-start: 0%;
+        display: flex;
+        flex-direction: column-reverse;
+
+    }
+
+    @font-face {
+        font-family: "srcuen_font.ttf";
+        src: url(fonts/srcuen_font.ttf) format(ttf);
+        local: ("srcuen_font.ttf") format(truetype);
+
+    }
+
+    .header {
+        font-family: "scruen_font";
+        float: url(fonts/srcuen_font.ttf) format(tff);
+    }
+
+    body>.container {
+        margin-block-start: 20px;
+        min-block-size: 400px;
+    }
+
+    .navbar.fixed-top {
+        /* csslint allow: adjoining-classes */
+        /* csslint ignore:start */
+        position: -webkit-sticky;
+        position: sticky;
+        /* csslint ignore:end */
+    }
+
+    .source-links {
+        float: inline-end;
+    }
+
+    .col-md-9 img {
+        max-inline-size: 100%;
+        display: inline-block;
+        padding: 4px;
+        line-height: 1.428571429;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin: 20px auto 30px auto;
+    }
+
+    h1 {
+        color: #444;
+        font-weight: 400;
+        font-size: 42px;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #444;
+        font-weight: 300;
+    }
+
+    hr {
+        border-block-start: 1px solid #aaa;
+    }
+
+    pre,
+    .rst-content tt {
+        max-inline-size: 100%;
+        background: #fff;
+        border: solid 1px #e1e4e5;
+        color: #333;
+        overflow-x: auto;
+    }
+
+    code.code-large,
+    .rst-content tt.code-large {
+        font-size: 90%;
+    }
+
+    code {
+        padding: 2px 5px;
+        background: #fff;
+        border: solid 1px #e1e4e5;
+        color: #333;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    pre code {
+        display: block;
+        background: transparent;
+        border: none;
+        white-space: pre;
+        word-wrap: normal;
+        font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 12px;
+    }
+
+    kbd {
+        padding: 2px 4px;
+        font-size: 90%;
+        color: #fff;
+        background-color: #333;
+        border-radius: 3px;
+        -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .25);
+        box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .25);
+    }
+
+    a code {
+        color: #2FA4E7;
+    }
+
+    a:hover code,
+    a:focus code {
+        color: #157AB5;
+    }
+
+    footer {
+        margin-block-start: 30px;
+        margin-block-end: 10px;
+        text-align: center;
+        font-weight: 200;
+    }
+
+    .modal-dialog {
+        margin-block-start: 60px;
+    }
+
+    /*
+ * Side navigation
+ *
+ * Scrollspy and affixed enhanced navigation to highlight sections and secondary
+ * sections of docs content.
+ */
+
+    .bs-sidebar.affix {
+        /* csslint allow: adjoining-classes */
+        /* csslint ignore:start */
+        position: -webkit-sticky;
+        position: sticky;
+        /* csslint ignore:end */
+        /* The nav header is 3.5rem high, plus 20px for the margin-top of the
+       main container. */
+        inset-block-start: calc(3.5rem + 20px);
+    }
+
+    .bs-sidebar.card {
+        /* csslint allow: adjoining-classes */
+        padding: 0;
+        max-block-size: 90%;
+        overflow-y: auto;
+    }
+
+    /* Toggle (vertically flip) sidebar collapse icon */
+    .bs-sidebar .navbar-toggler span {
+        -moz-transform: scale(1, -1);
+        -webkit-transform: scale(1, -1);
+        -o-transform: scale(1, -1);
+        -ms-transform: scale(1, -1);
+        transform: scale(1, -1);
+    }
+
+    .bs-sidebar .navbar-toggler.collapsed span {
+        /* csslint allow: adjoining-classes */
+        -moz-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+
+    /* First level of nav */
+    .bs-sidebar>.navbar-collapse>.nav {
+        padding-block-start: 10px;
+        padding-block-end: 10px;
+        border-radius: 5px;
+        inline-size: 100%;
+    }
+
+    /* All levels of nav */
+    .bs-sidebar .nav>li>a {
+        display: block;
+        padding: 5px 20px;
+        z-index: 1;
+    }
+
+    .bs-sidebar .nav>li>a:hover,
+    .bs-sidebar .nav>li>a:focus {
+        text-decoration: none;
+        border-inline-end: 1px solid;
+    }
+
+    .bs-sidebar .nav>li>a.active,
+    .bs-sidebar .nav>li>a.active:hover,
+    .bs-sidebar .nav>li>a.active:focus {
+        font-weight: bold;
+        background-color: transparent;
+        border-inline-end: 1px solid;
+    }
+
+    .bs-sidebar .nav .nav .nav {
+        margin-inline-start: 1em;
+    }
+
+    .bs-sidebar .nav>li>a {
+        font-weight: bold;
+    }
+
+    .bs-sidebar .nav .nav>li>a {
+        font-weight: normal;
+    }
+
+    .headerlink {
+        font-family: FontAwesome;
+        font-size: 14px;
+        display: none;
+        padding-inline-start: .5em;
+    }
+
+    h1:hover .headerlink,
+    h2:hover .headerlink,
+    h3:hover .headerlink,
+    h4:hover .headerlink,
+    h5:hover .headerlink,
+    h6:hover .headerlink {
+        display: inline-block;
+    }
+
+
+
+    .admonition,
+    details {
+        padding: 15px;
+        margin-block-end: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        text-align: start;
+    }
+
+    .admonition.note,
+    details.note {
+        /* csslint allow: adjoining-classes */
+        color: #2e6b89;
+        background-color: #e2f0f7;
+        border-color: #bce8f1;
+    }
+
+    .admonition.warning,
+    details.warning {
+        /* csslint allow: adjoining-classes */
+        color: #7a6032;
+        background-color: #fffae5;
+        border-color: #fbeed5;
+    }
+
+    .admonition.danger,
+    details.danger {
+        /* csslint allow: adjoining-classes */
+        color: #7f3130;
+        background-color: #fde3e3;
+        border-color: #eed3d7;
+    }
+
+    .admonition-title,
+    summary {
+        font-weight: bold;
+        text-align: start;
+    }
+
+    .admonition>p:last-child,
+    details>p:last-child {
+        margin-block-end: 0;
+    }
+
+    @media (max-inline-size: 991.98px) {
+        .navbar-collapse.show {
+            /* csslint allow: adjoining-classes */
+            overflow-y: auto;
+            max-block-size: calc(100vh - 3.5rem);
+        }
+    }
+
+    .dropdown-item.open {
+        /* csslint allow: adjoining-classes */
+        color: #fff;
+        background-color: #2FA4E7;
+    }
+
+    .dropdown-submenu>.dropdown-menu {
+        margin: 0 0 0 1.5rem;
+        padding: 0;
+        border-width: 0;
+    }
+
+    .dropdown-submenu>a::after {
+        display: block;
+        content: " ";
+        float: inline-end;
+        inline-size: 0;
+        block-size: 0;
+        border-color: transparent;
+        border-style: solid;
+        border-width: 5px 0 5px 5px;
+        border-inline-start-color: #ccc;
+        margin-block-start: 5px;
+        margin-inline-end: -10px;
+    }
+
+    .dropdown-submenu:hover>a::after {
+        border-inline-start-color: #fff;
+    }
+
+    @media (min-inline-size: 992px) {
+        .dropdown-menu {
+            overflow-y: auto;
+            max-block-size: calc(100vh - 3.5rem);
+        }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu>.dropdown-menu {
+            /* csslint ignore:start */
+            position: fixed !important;
+            /* csslint ignore:end */
+            margin-block-start: -9px;
+            margin-inline-start: -2px;
+            border-width: 1px;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown-submenu.pull-left {
+            /* csslint allow: adjoining-classes */
+            float: none;
+        }
+
+        .dropdown-submenu.pull-left>.dropdown-menu {
+            /* csslint allow: adjoining-classes */
+            inset-inline-start: -100%;
+            margin-inline-start: 10px;
+        }
+    }
+
+    @media print {
+
+        /* Remove sidebar when print */
+        .col-md-3 {
+            display: none;
+        }
+    }
+</style>
+
+<body>
+    <header class="header">
+        <div class="container"><a href="/" class="logo">My Static Site</a> <i class="fa-brands fa-bitcoin"></i>
+            <i class="fa-solid fa-coins"></i>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+        </ul>
+        <ul>
+            <li><a href="/">About</a></li>
+        </ul>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2023 My Static Site</p>
+    </footer>
+    </div>
+</body>
+
+</html>
