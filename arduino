@@ -1,0 +1,16 @@
+- project_directory
+  - templates
+    - base.html
+    - home.html
+ - pages
+  - home.md
+- static
+  - css
+   - style.css
+  - images
+    - image.jpg/image.png
+    - logo.png
+    - favicon.ico
+    - favicon.png
+    - video.mp4
+    - video.webm
