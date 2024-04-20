@@ -5,9 +5,8 @@
  - pages
   - home.md
 - static
-  - css
    - style.css
-  - images
+  - assets
     - image.jpg/image.png
     - logo.png
     - favicon.ico
