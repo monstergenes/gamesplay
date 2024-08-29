@@ -1,4 +1,4 @@
-{
+const jsonData = {
     "PrivateStateTokenV1VOPRF": {
         "protocol_version": "PrivateStateTokenV1VOPRF",
         "batchsize": 1,
@@ -29,5 +29,15 @@
             }
         },
         "id": 1
+    }
+};
+
+// Example: Accessing keys and expiry dates
+const keys = jsonData.PrivateStateTokenV1VOPRF.keys;
+for (const key in keys) {
+    if (keys.hasOwnProperty(key)) {
+        console.log(`Key ${key}:`);
+        console.log(`Y: ${keys[key].Y}`);
+        console.log(`Expiry: ${keys[key].expiry}`);
     }
 }
