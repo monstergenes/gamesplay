@@ -1,11 +1,11 @@
 import os
-from Jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader
 import markdown
 
 # Set up Jinja2 environment
 template_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates")
-env = Environment(loader=FileSystemLoader(r"https://github.com/monstergenes/gamesplay/tree/master/project_directory")
-)  # noqa: F821
+env = Environment(loader=FileSystemLoader(r"templates_dir")) 
+# noqa: F821
 
 # Output directory for generated site
 output_dir = "output"
@@ -101,5 +101,6 @@ class BitcoinGame:
 
 if __name__ == "__main__":
     game = BitcoinGame()
+    game.play_game()
     game.play_game()
         
