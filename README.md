@@ -111,9 +111,9 @@ private_token = os.getenv('PRIVATE_TOKEN')
 6. Running the Application
 Run the Python Script:
 
-If you have a script such as bitcoin_game.py, you can run it with:
+If you have a script such as game.py, you can run it with:
 ```
-python bitcoin_game.py
+python game.py
 ```
 Verify Output: Ensure the application runs as expected by following any on-screen instructions or checking output files.
 
