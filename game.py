@@ -1,11 +1,11 @@
 import os
-from Jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader
 import markdown
 
 # Set up Jinja2 environment
 template_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates")
-env = Environment(loader=FileSystemLoader(r"C:/Users/Mares/game/project_directory")
-)  # noqa: F821
+env = Environment(loader=FileSystemLoader(r"templates_dir")) 
+# noqa: F821
 
 # Output directory for generated site
 output_dir = "output"
@@ -27,7 +27,7 @@ for filename in os.listdir(pages_dir):
         template = env.get_template("base.html")
 
         # Render template with content
-        output_html = template.render(title="My Static Site", content=html_content)
+        output_html = template.render(title="gamesplay", content=html_content)
 
         # Write generated HTML to file
         output_filename = os.path.splitext(filename)[0] + ".html"
@@ -102,3 +102,5 @@ class BitcoinGame:
 if __name__ == "__main__":
     game = BitcoinGame()
     game.play_game()
+    game.play_game()
+        

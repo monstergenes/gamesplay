@@ -1,3 +1,3 @@
-# Welcome to my site!
+# Gamesplay!
 
 This is the home page.
