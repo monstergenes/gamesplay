@@ -1,5 +1,5 @@
 # requirements.txt
 
-Jinja2==3.1.5
+Jinja2==3.1.6
 Markdown==3.5.2
 MarkupSafe==2.1.5
